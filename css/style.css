@@ -1,0 +1,53 @@
+.container{
+	text-align: center;
+}
+
+h1{
+	font-family: 'Great Vibes', cursive;
+	font-size: 45px;
+	color: #9D2227;
+}
+
+.searchBar{
+	margin: auto;
+    width: 80%;
+    background-color: #F0F0F0;
+}
+
+.col-4 {
+	float: left;
+	/* gutters: Half a gutter is 10px, 10/960 (context) = 1.041666% */
+	padding-left: 18.041667%;
+    padding-right: 1.04166666%;
+    padding-top: 8%;
+
+}
+
+.col-3{
+	padding-top: 8%;
+	padding-bottom: 10%;
+}
+
+#search{
+	margin-bottom: 15px;
+	margin-top: -40px;
+	position: absolute;
+	left: 30%;
+	left: 44%;
+}
+
+#scholarshipOptions{
+	height: 99px;
+    margin-top: -10%;
+    background-color: white;
+    display: none;
+}
+
+#educationOptions{
+	background-color: white;
+	width: 159px;
+    margin-left: 59%;
+    margin-top: -2%;
+    height: 99px;
+    display: none;
+}
