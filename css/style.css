@@ -51,3 +51,20 @@ h1{
     height: 99px;
     display: none;
 }
+
+.aciColor{
+	background: url("../images/aciColor.png") no-repeat;
+}
+
+
+.acmColor{
+	background: url("../images/acm-color.png") no-repeat;
+}
+
+.afeColor{
+	background: url("../images/AFE-color.png") no-repeat;
+}
+
+.logoColor{
+	background: url("../images/logo3.png") no-repeat;
+}
