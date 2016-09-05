@@ -52,19 +52,13 @@ h1{
     display: none;
 }
 
-.aciColor{
-	background: url("../images/aciColor.png") no-repeat;
+.specificLogo {
+	display: inline-block;
 }
 
-
-.acmColor{
-	background: url("../images/acm-color.png") no-repeat;
-}
-
-.afeColor{
-	background: url("../images/AFE-color.png") no-repeat;
-}
-
-.logoColor{
-	background: url("../images/logo3.png") no-repeat;
+#programLogos {
+	list-style: none;
+	max-width: 400px;
+	position: relative;
+	margin: auto;
 }

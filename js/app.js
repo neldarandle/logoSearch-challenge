@@ -1,10 +1,29 @@
 $(document).ready(function(){
-	var LogoObject = function(programType, educationalLevel, img){
+
+	// <--* variable to obtain values from first drop-down menu *-->
+
+	var programType = document.getElementById("scholarships");
+	var scholarshipOptions = programType.options[programType.selectedIndex].value;
+	var selectAllPrograms = programType.options[programType.options.length-3].value;
+	var scholarshipProgram = programType.options[programType.options.length-2].value;
+	var loanProgram = programType.options[programType.options.length-1].value;
+	
+
+	//<--* variable to obtain values from second drop-down menu *-->
+
+	var educationLevel = document.getElementById("educationalLevel");
+	var levelOptions = educationLevel.options[educationLevel.selectedIndex].value;
+	var selectAllLevels = educationLevel.options[educationLevel.options.length-3].value;
+	var kindergartenLevel = educationLevel.options[educationLevel.options.length-2].value;
+	var highSchoolLevel = educationLevel.options[educationLevel.options.length-1].value;
+
+	var LogoObject = function(programType, educationalLevel,imgBW, imgColor){
 		this.programType = programType;
 		this.educationalLevel = educationalLevel;
-		this.img = img;
+		this.imgBW = imgBW;
+		this.imgColor = imgColor;
 		this.activationFunction = function(programTypeInput, educationalLevelInput){
-			if(programTypeInput === programType && educationalLevelInput === educationalLevel) || (programTypeInput === "search all" && educationalLevelInput === educationalLevel) || (programTypeInput === programType && educationalLevelInput === "search all") || (programTypeInput === "search all" && educationalLevelInput === "search all"){
+			if((programTypeInput === programType && educationalLevelInput === educationalLevel) || (programTypeInput === selectAllPrograms && educationalLevelInput === educationalLevel) || (programTypeInput === programType && educationalLevelInput === selectAllLevels) || (programTypeInput === selectAllPrograms && educationalLevelInput === selectAllLevels)){
 				return true
 			}
 			else{
@@ -13,31 +32,114 @@ $(document).ready(function(){
 		}
 	}
 
-	var logoObjectsArray = []
+	var logoArray = []
+		
+	var aci = new LogoObject(scholarshipProgram, kindergartenLevel,"images/aci.png","images/aciColor.png")
+		console.log(aci)
+	var acm = new LogoObject(loanProgram, highSchoolLevel, "images/acm.png","images/acm-color.png");
+	var afe = new LogoObject(scholarshipProgram, highSchoolLevel,"images/AFE.png", "images/AFE-color.png");
+	var aci2 = new LogoObject(loanProgram, kindergartenLevel,"images/aci.png", "images/aciColor.png");
+	var aci3 = new LogoObject(scholarshipProgram, highSchoolLevel,"images/aci.png", "images/aciColor.png");
+	var acm2 = new LogoObject(loanProgram, kindergartenLevel,"images/acm.png", "images/acm-color.png"); 
+	var afe2 = new LogoObject(scholarshipProgram, kindergartenLevel,"images/AFE.png", "images/AFE-color.png");
+	var aci4 = new LogoObject(loanProgram, highSchoolLevel,"images/aci.png", "images/aciColor.png");
 
+	logoArray.push(aci, acm, afe, aci2, aci3, acm2, afe2, aci4)
+	var logoArrayWithIds = logoArray.map(function (item, index) {
+		item.id = index
+		return item
+	})
+	console.log(logoArray)
+	console.log(logoArrayWithIds)
+
+	logoArrayWithIds.map(function (item, index) {
+		$("#programLogos").append("<li class='specificLogo'>" + "<img id='" + item.id + "' src='" + item.imgBW + "'>" + "</li>")
+	})
 
 	document.getElementById("search").onclick = function (event) {
 		event.preventDefault()
+		
+		var userInput1 = programType.options[programType.selectedIndex].value;
+		console.log(userInput1)
+		var userInput2 = educationLevel.options[educationLevel.selectedIndex].value;
+		console.log(userInput2)
 
-		// <--* variable to obtain values from first drop-down menu *-->
+		console.log(userInput1)
+		console.log(userInput2)
 
-		var programType = document.getElementById("scholarships");
-		var scholarshipOptions = programType.options[programType.selectedIndex].value;
-		var selectAllPrograms = programType.options[programType.options.length-3].value;
-		var scholarshipProgram = programType.options[programType.options.length-2].value;
-		var loanProgram = programType.options[programType.options.length-1].value;
+		var activeArray = logoArray.map(function(item){
+			item.activity = item.activationFunction(userInput1, userInput2)
+			return item
+		});
+		console.log(activeArray)
+
+
+		activeArray.map(function(item){
+			if(item.activity === true){
+				document.getElementById(item.id).src = item.imgColor
+				// $("#programLogos").toggle("<li class='specificLogo'>" + "<img id='" + item.id + "' src='" + item.imgColor + "'>" + "</li>")
+			}
+			else{
+				document.getElementById(item.id).src = item.imgBW
+			}
+		})
+
+
+
+
+		// for(var i = 0; i<logoArray.length; i++){
+		// 	i.activationFunction(userInput1, userInput2)
+		// 	if(item.activationFunction() === true){
+		// 		return "ooiii"
+		// 	}
+		// 	else{
+		// 		return "nooo"
+		// 	}
+		// };
+		// // <--* variable to obtain values from first drop-down menu *-->
+
+		// var programType = document.getElementById("scholarships");
+		// var scholarshipOptions = programType.options[programType.selectedIndex].value;
+		// var selectAllPrograms = programType.options[programType.options.length-3].value;
+		// var scholarshipProgram = programType.options[programType.options.length-2].value;
+		// var loanProgram = programType.options[programType.options.length-1].value;
 	
 
-		//<--* variable to obtain values from second drop-down menu *-->
+		// //<--* variable to obtain values from second drop-down menu *-->
 
-		var educationLevel = document.getElementById("educationalLevel");
-		var levelOptions = educationLevel.options[educationLevel.selectedIndex].value;
-		var selectAllLevels = programType.options[programType.options.length-3].value;
-		var kindergartenLevel = programType.options[programType.options.length-2].value;
-		var highSchoolLevel = programType.options[programType.options.length-1].value;
+		// var educationLevel = document.getElementById("educationalLevel");
+		// var levelOptions = educationLevel.options[educationLevel.selectedIndex].value;
+		// var selectAllLevels = educationLevel.options[educationLevel.options.length-3].value;
+		// var kindergartenLevel = educationLevel.options[educationLevel.options.length-2].value;
+		// var highSchoolLevel = educationLevel.options[educationLevel.options.length-1].value;
 		
-		var aci = new LogoObject(scholarshipProgram, kindergartenLevel, + "<img id= 'aciLogo' src='images/aciColor.png'>" + activationFunction(scholarshipProgram,kindergartenLevel));
-		var acm = new LogoObject(loanProgram, highSchoolLevel), + "<img id= 'acmLogo' src='images/acm.png'>"
+		// var aci = new LogoObject(scholarshipProgram, kindergartenLevel, "<img id= 'aciLogo' src='images/aciColor.png'>")
+		// // aci.activationFunction(scholarshipProgram,kindergartenLevel);
+		// console.log(aci)
+		// var acm = new LogoObject(loanProgram, highSchoolLevel, "<img id= 'acmLogo' src='images/acm.png'>");
+		// // acm.activationFunction(loanProgram, highSchoolLevel);
+		// // console.log(acm)
+		// var afe = new LogoObject(scholarshipProgram, highSchoolLevel, "<img id= 'afeLogo' src='images/AFE.png'>");
+		// // afe.activationFunction(scholarshipProgram, highSchoolLevel);
+		// var aci2 = new LogoObject(loanProgram, kindergartenLevel, "<img id= 'aciLogo' src='images/aciColor.png'>");
+		// 	// aci2.activationFunction(loanProgram, kindergartenLevel);
+		// var aci3 = new LogoObject(scholarshipProgram, highSchoolLevel, "<img id= 'aciLogo' src='images/aciColor.png'>");
+		// // aci3.activationFunction(scholarshipProgram, highSchoolLevel);
+		// var acm2 = new LogoObject(loanProgram, kindergartenLevel, "<img id= 'acmLogo' src='images/acm.png'>");
+		// // acm2.activationFunction(loanProgram, kindergartenLevel); 
+		// var afe2 = new LogoObject(scholarshipProgram, kindergartenLevel, "<img id= 'afeLogo' src='images/AFE.png'>");
+		// // afe2.activationFunction(scholarshipProgram, kindergartenLevel); 
+		// var aci4 = new LogoObject(loanProgram, highSchoolLevel, "<img id= 'aciLogo' src='images/aciColor.png'>");
+		// // aci4.activationFunction(loanProgram, highSchoolLevel);
+
+		// logoArray.push(aci, acm, afe, aci2, aci3, acm2, afe2, aci4)
+		// console.log(logoArray)
+
+		
+		
+		
+
+		
 
 
 		// if((levelOptions === "searchAll" || scholarshipOptions === "searchAll") || (levelOptions === "searchAll" && scholarshipOptions === "searchAll"){
