@@ -1,5 +1,7 @@
 .container{
 	text-align: center;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 20px;
 }
 
 .container h1{
@@ -17,7 +19,7 @@
 .col-4 {
 	float: left;
 	 /*gutters: Half a gutter is 10px, 10/960 (context) = 1.041666% */
-	padding-left: 18.041667%;
+	padding-left: 9.041667%;
     padding-right: 1.04166666%;
     padding-top: 8%;
 
@@ -28,15 +30,66 @@
 	padding-bottom: 10%;
 }
 
-.title select{
-	font-size: 40px;
+img{
+	width: 100px;
 }
 
+select{
+	
+    color: #D1D7B9;
+
+
+  	background:
+    	linear-gradient(45deg, transparent 50%, black 50%),
+    	linear-gradient(135deg, black 50%, transparent 50%),
+    	linear-gradient(to right, transparent, transparent);
+  	background-position:
+    	calc(100% - 21px) calc(1em + 2px),
+    	calc(100% - 16px) calc(1em + 2px),
+    	100% 0;
+  	background-size:
+   		5px 5px,
+    	5px 5px,
+    	2.5em 2.5em;
+  	background-repeat: no-repeat;
+
+  	/* styling and reset */
+
+  	border: thin solid black;
+  	font: 300 1em/100% "Helvetica Neue", Arial, sans-serif;
+  	line-height: 1.5em;
+  	padding: 0.5em 3.5em 0.5em 1em;
+
+  	/* reset */
+
+  	border-radius: 0;
+  	margin: 0;      
+  	-webkit-box-sizing: border-box;
+  	-moz-box-sizing: border-box;
+  	box-sizing: border-box;
+  	-webkit-appearance:none;
+  	-moz-appearance:none;
+}
+
+#scholarships, #educationalLevel{
+	background-color: white;
+}
+
+
 #search{
-	margin-bottom: 15px;
-	margin-top: -40px;
+	margin-bottom: 17px;
+	margin-top: -55px;
 	position: absolute;
-	left: 50%;
+	left: 46%;
+	height: 37px;
+	width: 115px;
+	font-size: 20px;
+	border-radius: 2px;
+	background-color: #9D222A;
+	color: white;
+	font-weight: normal;
+	padding: 0;
+	border: none;
 }
 
 
@@ -46,11 +99,12 @@
 
 #programLogos {
 	list-style: none;
-	max-width: 400px;
+	max-width: 500px;
 	position: relative;
 	margin: auto;
 }
 
 li{
-	padding: 8px;
+	padding: 11px;
+	margin-top: 15px;
 }
